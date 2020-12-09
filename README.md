@@ -22,9 +22,11 @@ ReactJS, Sass, HTML5, CSS,...
 
 # Contact me via
 
-<ol>
+<ul>
 <li>
 [Facebook]('https://www.facebook.com/hoangpham2018/')
+</li>
+<li>
 [LinkedIn]('https://www.linkedin.com/in/hoang-pham-25a296201/')
 </li>
-</ol>
+</ul>
