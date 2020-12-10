@@ -1,5 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './styles.scss';
 
 MenuItem.propTypes = {
@@ -8,12 +9,16 @@ MenuItem.propTypes = {
         imageUrl: PropTypes.string.isRequired,
         size: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
+        linkUrl: PropTypes.string.isRequired,
     }),
 };
 
-function MenuItem({ section }) {
+function MenuItem({ section, match, history }) {
     return (
-        <div className={`menu-item ${section.size}`}>
+        <div
+            className={`menu-item ${section.size}`}
+            // onClick={() => history.push(`${match.url}${section.linkUrl}`)}
+        >
             <div
                 className="background-img"
                 style={{ backgroundImage: `url(${section.imageUrl})` }}
@@ -26,4 +31,4 @@ function MenuItem({ section }) {
     );
 }
 
-export default MenuItem;
+export default withRouter(MenuItem);
