@@ -12,7 +12,6 @@ InputField.propTypes = {
 };
 
 function InputField({ label, onChange, ...otherInputProps }) {
-    console.log('other: ', otherInputProps);
     return (
         <div className="group">
             <input

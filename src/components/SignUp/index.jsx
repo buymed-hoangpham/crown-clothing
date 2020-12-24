@@ -3,11 +3,10 @@ import CustomButton from 'components/form-control/CustomButton';
 import InputField from 'components/form-control/InputField';
 import React, { useState } from 'react';
 import './styles.scss';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
 
-SignIn.propTypes = {};
+SignUp.propTypes = {};
 
-function SignIn(props) {
+function SignUp(props) {
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -25,8 +24,8 @@ function SignIn(props) {
 
     return (
         <div className="sign-in">
-            <h2>Already have an account?</h2>
-            <span>Sign in with your email and password</span>
+            <h2>Don't have an account?</h2>
+            <span>Sign up with your email and password</span>
 
             <form action="" onSubmit={onHandleSubmit}>
                 <InputField
@@ -45,15 +44,18 @@ function SignIn(props) {
                     label={'Password'}
                     required
                 />
-                <div className="buttons">
-                    <CustomButton type="submit">Log in</CustomButton>
-                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
-                        Sign in with Google
-                    </CustomButton>
-                </div>
+                <InputField
+                    type="password"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={onHandleChange}
+                    label={'Confirm Password'}
+                    required
+                />
+                <CustomButton type="submit">Log in</CustomButton>
             </form>
         </div>
     );
 }
 
-export default SignIn;
+export default SignUp;
