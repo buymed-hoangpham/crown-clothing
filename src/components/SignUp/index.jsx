@@ -1,6 +1,7 @@
 // import PropTypes from 'prop-types';
 import CustomButton from 'components/form-control/CustomButton';
 import InputField from 'components/form-control/InputField';
+import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
 import React, { useState } from 'react';
 import './styles.scss';
 
@@ -8,12 +9,39 @@ SignUp.propTypes = {};
 
 function SignUp(props) {
     const [values, setValues] = useState({
+        displayName: '',
         email: '',
         password: '',
+        confirmPassword: '',
     });
 
-    const onHandleSubmit = (e) => {
+    const onHandleSubmit = async (e) => {
         e.preventDefault();
+        const { displayName, email, password, confirmPassword } = values;
+        console.log(values);
+        if (password !== confirmPassword) {
+            alert("Passwords don't match!!!");
+            return;
+        }
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(
+                email,
+                password
+            );
+
+            await createUserProfileDocument(user, { displayName });
+
+            setValues({
+                displayName: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+            });
+
+            console.log(values);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const onHandleChange = (e) => {
@@ -23,11 +51,19 @@ function SignUp(props) {
     };
 
     return (
-        <div className="sign-in">
+        <div className="sign-up">
             <h2>Don't have an account?</h2>
             <span>Sign up with your email and password</span>
 
             <form action="" onSubmit={onHandleSubmit}>
+                <InputField
+                    type="text"
+                    name="displayName"
+                    value={values.displayName}
+                    onChange={onHandleChange}
+                    label={'Display Name'}
+                    required
+                />
                 <InputField
                     type="email"
                     name="email"
