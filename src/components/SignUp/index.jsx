@@ -37,8 +37,6 @@ function SignUp(props) {
                 password: '',
                 confirmPassword: '',
             });
-
-            console.log(values);
         } catch (error) {
             console.log(error);
         }
