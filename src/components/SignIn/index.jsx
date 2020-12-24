@@ -3,7 +3,7 @@ import CustomButton from 'components/form-control/CustomButton';
 import InputField from 'components/form-control/InputField';
 import React, { useState } from 'react';
 import './styles.scss';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 SignIn.propTypes = {};
 
@@ -13,8 +13,18 @@ function SignIn(props) {
         password: '',
     });
 
-    const onHandleSubmit = (e) => {
+    const onHandleSubmit = async (e) => {
         e.preventDefault();
+        const { email, password } = values;
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            setValues({
+                email: '',
+                password: '',
+            });
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const onHandleChange = (e) => {
