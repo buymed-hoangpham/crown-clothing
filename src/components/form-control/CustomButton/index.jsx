@@ -4,10 +4,10 @@ import './styles.scss';
 
 CustomButton.propTypes = {};
 
-function CustomButton({ children, isGoogleSignIn, ...otherProps }) {
+function CustomButton({ children, isGoogleSignIn, inverted, ...otherProps }) {
     return (
         <button
-            className={` ${
+            className={` ${inverted ? 'inverted' : ''} ${
                 isGoogleSignIn ? 'google-sign-in' : ''
             } custom-button`}
             {...otherProps}
