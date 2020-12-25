@@ -1,15 +1,18 @@
 // import PropTypes from 'prop-types';
 import { ReactComponent as Logo } from 'assets/Crown.svg';
+import CartDropDown from 'components/cartDropDown';
+import CartIcon from 'components/cartIcon';
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './styles.scss';
-import { auth } from '../../firebase/firebase.utils';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { auth } from '../../firebase/firebase.utils';
+import './styles.scss';
 
 Header.propTypes = {};
 
 function Header() {
     const currentUser = useSelector((state) => state.user.currentUser);
+    const cartHidden = useSelector((state) => state.cart.hidden);
     return (
         <div className="header">
             <Link to="/" className="logo-container">
@@ -31,7 +34,9 @@ function Header() {
                         SIGN IN
                     </Link>
                 )}
+                <CartIcon />
             </div>
+            {cartHidden ? null : <CartDropDown />}
         </div>
     );
 }
