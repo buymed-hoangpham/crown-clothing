@@ -5,14 +5,16 @@ import CartIcon from 'components/cartIcon';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectCartHidden } from 'redux/cart/cart.selectors';
+import { selectCurrentUser } from 'redux/user/user.selectors';
 import { auth } from '../../firebase/firebase.utils';
 import './styles.scss';
 
 Header.propTypes = {};
 
 function Header() {
-    const currentUser = useSelector((state) => state.user.currentUser);
-    const cartHidden = useSelector((state) => state.cart.hidden);
+    const currentUser = useSelector((state) => selectCurrentUser(state));
+    const cartHidden = useSelector((state) => selectCartHidden(state));
     return (
         <div className="header">
             <Link to="/" className="logo-container">
