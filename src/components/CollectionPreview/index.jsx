@@ -1,9 +1,12 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import CollectionItem from 'components/CollectionItem';
 import './styles.scss';
 
-CollectionPreview.propTypes = {};
+CollectionPreview.propTypes = {
+    title: PropTypes.string.isRequired,
+    items: PropTypes.array.isRequired,
+};
 
 function CollectionPreview({ title, items }) {
     return (

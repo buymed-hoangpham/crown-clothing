@@ -6,9 +6,7 @@ import { addItem } from 'redux/cart/cartActions';
 import './styles.scss';
 
 CollectionItem.propTypes = {
-    imageUrl: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    item: PropTypes.object.isRequired,
 };
 
 function CollectionItem({ item, addItem }) {
