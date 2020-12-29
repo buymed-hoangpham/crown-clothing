@@ -23,7 +23,10 @@ function MenuItem({ section, match, history }) {
                 className="background-img"
                 style={{ backgroundImage: `url(${section.imageUrl})` }}
             ></div>
-            <div className="content">
+            <div
+                className="content"
+                onClick={() => history.push(`shop/${section.title}`)}
+            >
                 <h1 className="title">{section.title}</h1>
                 <span className="subtitle">Shop now</span>
             </div>
