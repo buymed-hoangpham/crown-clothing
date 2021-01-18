@@ -1,13 +1,15 @@
 // import PropTypes from 'prop-types';
 import CustomButton from 'components/form-control/CustomButton';
 import InputField from 'components/form-control/InputField';
-import { auth, createUserProfileDocument } from 'firebase/firebase.utils';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signUpStart } from 'redux/user/userAction';
 import './styles.scss';
 
 SignUp.propTypes = {};
 
 function SignUp(props) {
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         displayName: '',
         email: '',
@@ -18,28 +20,11 @@ function SignUp(props) {
     const onHandleSubmit = async (e) => {
         e.preventDefault();
         const { displayName, email, password, confirmPassword } = values;
-        console.log(values);
         if (password !== confirmPassword) {
             alert("Passwords don't match!!!");
             return;
         }
-        try {
-            const { user } = await auth.createUserWithEmailAndPassword(
-                email,
-                password
-            );
-
-            await createUserProfileDocument(user, { displayName });
-
-            setValues({
-                displayName: '',
-                email: '',
-                password: '',
-                confirmPassword: '',
-            });
-        } catch (error) {
-            console.log(error);
-        }
+        dispatch(signUpStart({ email, password, displayName }));
     };
 
     const onHandleChange = (e) => {

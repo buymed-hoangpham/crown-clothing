@@ -3,5 +3,6 @@ const CartActionTypes = {
     ADD_ITEM: 'ADD_ITEM',
     DECREASE_ITEM_FROM_CART: 'DECREASE_ITEM_FROM_CART',
     REMOVE_ITEM: 'REMOVE_ITEM',
+    CLEAR_CART: 'CLEAR_CART',
 };
 export default CartActionTypes;

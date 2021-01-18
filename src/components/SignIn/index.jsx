@@ -2,8 +2,9 @@
 import CustomButton from 'components/form-control/CustomButton';
 import InputField from 'components/form-control/InputField';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { emailSignInStart, googleSignInStart } from 'redux/user/userAction';
 import './styles.scss';
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 SignIn.propTypes = {};
 
@@ -12,19 +13,12 @@ function SignIn(props) {
         email: '',
         password: '',
     });
+    const dispatch = useDispatch();
 
     const onHandleSubmit = async (e) => {
         e.preventDefault();
         const { email, password } = values;
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-            setValues({
-                email: '',
-                password: '',
-            });
-        } catch (error) {
-            console.log(error);
-        }
+        dispatch(emailSignInStart({ email, password }));
     };
 
     const onHandleChange = (e) => {
@@ -57,7 +51,11 @@ function SignIn(props) {
                 />
                 <div className="buttons">
                     <CustomButton type="submit">Log in</CustomButton>
-                    <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                    <CustomButton
+                        type="button"
+                        onClick={() => dispatch(googleSignInStart())}
+                        isGoogleSignIn
+                    >
                         Sign in with Google
                     </CustomButton>
                 </div>

@@ -3,16 +3,18 @@ import { ReactComponent as Logo } from 'assets/Crown.svg';
 import CartDropDown from 'components/cartDropDown';
 import CartIcon from 'components/cartIcon';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectCartHidden } from 'redux/cart/cart.selectors';
 import { selectCurrentUser } from 'redux/user/user.selectors';
+import { signOutStart } from 'redux/user/userAction';
 import { auth } from '../../firebase/firebase.utils';
 import './styles.scss';
 
 Header.propTypes = {};
 
 function Header() {
+    const dispatch = useDispatch();
     const currentUser = useSelector((state) => selectCurrentUser(state));
     const cartHidden = useSelector((state) => selectCartHidden(state));
     return (
@@ -28,7 +30,10 @@ function Header() {
                     CONTACT
                 </Link>
                 {currentUser ? (
-                    <div className="option" onClick={() => auth.signOut()}>
+                    <div
+                        className="option"
+                        onClick={() => dispatch(signOutStart())}
+                    >
                         SIGN OUT
                     </div>
                 ) : (
