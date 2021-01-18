@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { selectCartHidden } from 'redux/cart/cart.selectors';
 import { selectCurrentUser } from 'redux/user/user.selectors';
 import { signOutStart } from 'redux/user/userAction';
-import { auth } from '../../firebase/firebase.utils';
 import './styles.scss';
 
 Header.propTypes = {};
