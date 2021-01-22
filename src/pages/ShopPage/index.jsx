@@ -11,7 +11,6 @@ const CollectionOverviewContainer = lazy(() =>
 const CollectionPageContainer = lazy(() =>
     import('pages/CollectionPage/collection-page.container')
 );
-const NotFound = lazy(() => import('components/NotFound/notfound.component'));
 
 const ShopPage = ({ match, fetchCollectionsStart }) => {
     useEffect(() => {
@@ -30,7 +29,6 @@ const ShopPage = ({ match, fetchCollectionsStart }) => {
                     path={`${match.path}/:collectionId`}
                     component={CollectionPageContainer}
                 />
-                <Route component={NotFound} />
             </Suspense>
         </Switch>
     );

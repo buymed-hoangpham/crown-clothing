@@ -1,4 +1,4 @@
-import CartItem from 'components/cartItem/inxex';
+import CartItem from 'components/cartItem';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';

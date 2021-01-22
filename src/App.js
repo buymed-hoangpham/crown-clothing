@@ -13,7 +13,6 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const ShopPage = lazy(() => import('pages/ShopPage'));
 const CheckOutPage = lazy(() => import('components/checkOut'));
 const AuthPage = lazy(() => import('pages/AuthPage'));
-const NotFound = lazy(() => import('components/NotFound/notfound.component'));
 
 const App = ({ checkUserSession, currentUser }) => {
     useEffect(() => {
@@ -44,7 +43,6 @@ const App = ({ checkUserSession, currentUser }) => {
                                 )
                             }
                         />
-                        <Route component={NotFound} />
                     </Suspense>
                 </ErrorBoundary>
             </Switch>
