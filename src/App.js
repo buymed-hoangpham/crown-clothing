@@ -1,3 +1,4 @@
+import ErrorBoundary from 'components/error-boundary/error-boundary.component';
 import Header from 'components/Header';
 import Spinner from 'components/Spinner/spinner.component';
 import React, { lazy, Suspense, useEffect } from 'react';
@@ -23,23 +24,29 @@ const App = ({ checkUserSession, currentUser }) => {
         <div className="App">
             <Header />
             <Switch>
-                <Suspense fallback={<Spinner />}>
-                    <Route path="/" component={HomePage} exact />
-                    <Route path="/shop" component={ShopPage} />
-                    <Route exact path="/checkout" component={CheckOutPage} />
-                    <Route
-                        exact
-                        path="/auth"
-                        render={() =>
-                            currentUser === null ? (
-                                <AuthPage />
-                            ) : (
-                                <Redirect to="/" />
-                            )
-                        }
-                    />
-                    <Route component={NotFound} />
-                </Suspense>
+                <ErrorBoundary>
+                    <Suspense fallback={<Spinner />}>
+                        <Route path="/" component={HomePage} exact />
+                        <Route path="/shop" component={ShopPage} />
+                        <Route
+                            exact
+                            path="/checkout"
+                            component={CheckOutPage}
+                        />
+                        <Route
+                            exact
+                            path="/auth"
+                            render={() =>
+                                currentUser === null ? (
+                                    <AuthPage />
+                                ) : (
+                                    <Redirect to="/" />
+                                )
+                            }
+                        />
+                        <Route component={NotFound} />
+                    </Suspense>
+                </ErrorBoundary>
             </Switch>
         </div>
     );
