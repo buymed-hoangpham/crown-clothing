@@ -1,3 +1,11 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTablet {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 .custom-button {
     min-width: 165px;
     width: auto;
@@ -5,7 +13,7 @@
     letter-spacing: 0.5px;
     line-height: 50px;
     padding: 0 35px 0 35px;
-    font-size: 15px;
+    font-size: 20px;
     background-color: black;
     color: white;
     text-transform: uppercase;
@@ -15,6 +23,17 @@
     cursor: pointer;
     display: flex;
     justify-content: center;
+
+    @include mobileAndTablet() {
+        min-width: 80%;
+        display: block;
+        opacity: 0.9;
+        padding: 0 10px;
+
+        height: 50px;
+        line-height: 50px;
+        font-size: 15px;
+    }
 
     &:hover {
         background-color: white;

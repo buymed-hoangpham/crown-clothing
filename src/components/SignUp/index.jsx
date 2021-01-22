@@ -71,7 +71,9 @@ function SignUp(props) {
                     label={'Confirm Password'}
                     required
                 />
-                <CustomButton type="submit">Log in</CustomButton>
+                <div className="buttons">
+                    <CustomButton type="submit">Log in</CustomButton>
+                </div>
             </form>
         </div>
     );

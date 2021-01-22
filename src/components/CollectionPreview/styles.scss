@@ -1,3 +1,11 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTablet {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 .collection-preview {
     display: flex;
     flex-direction: column;
@@ -12,5 +20,13 @@
     .preview {
         display: flex;
         justify-content: space-between;
+
+        @include mobileAndTablet() {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+
+            padding: 0 15px;
+        }
     }
 }

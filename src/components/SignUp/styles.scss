@@ -1,3 +1,11 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTablet {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 .sign-up {
     width: 400px;
     display: flex;
@@ -5,5 +13,19 @@
 
     .title {
         margin: 10px 0;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        @include mobileAndTablet() {
+            flex-direction: column;
+        }
+    }
+
+    @include mobileAndTablet() {
+        width: unset;
+        align-items: center;
     }
 }

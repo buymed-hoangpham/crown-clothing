@@ -1,6 +1,18 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTable {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 body {
     font-family: Open Sans Condensed;
     padding: 20px 60px;
+
+    @include mobileAndTable() {
+        padding: 10px;
+    }
 }
 
 a {

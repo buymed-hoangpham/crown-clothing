@@ -1,3 +1,11 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTablet {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 .menu-item {
     min-width: 30%;
     height: 240px;
@@ -8,6 +16,10 @@
     border: 1px solid black;
     margin: 0 7.5px 15px;
     overflow: hidden;
+
+    // @include mobileAndTablet() {
+
+    // }
 
     &:hover {
         cursor: pointer;
@@ -32,6 +44,10 @@
 
     &.large {
         height: 440px;
+
+        @include mobileAndTablet() {
+            height: 240px;
+        }
     }
 
     .background-img {

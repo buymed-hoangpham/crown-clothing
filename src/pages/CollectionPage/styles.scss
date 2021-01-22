@@ -1,3 +1,11 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTablet {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 .collection-page {
     display: flex;
     flex-direction: column;
@@ -11,6 +19,14 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 10px;
+
+        @include mobileAndTablet() {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 15px;
+
+            padding: 0 15px;
+        }
 
         & .collection-item {
             margin-bottom: 30px;

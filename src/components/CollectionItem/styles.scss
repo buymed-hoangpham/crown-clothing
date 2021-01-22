@@ -1,3 +1,11 @@
+$mobile-tablet-max-width: 800px;
+
+@mixin mobileAndTablet {
+    @media screen and (max-width: #{$mobile-tablet-max-width}) {
+        @content;
+    }
+}
+
 .collection-item {
     width: 22vw;
     display: flex;
@@ -6,12 +14,30 @@
     align-items: center;
     position: relative;
 
+    @include mobileAndTablet() {
+        width: 40vw;
+
+        &:hover {
+            .image {
+                opacity: unset;
+            }
+
+            .custom-button {
+                opacity: unset;
+            }
+        }
+    }
+
     .image {
         width: 100%;
         height: 95%;
         background-size: cover;
         background-position: center;
         margin-bottom: 5px;
+
+        @include mobileAndTablet() {
+            height: 85%;
+        }
     }
 
     .custom-button {
@@ -20,9 +46,15 @@
         position: absolute;
         top: 255px;
         display: none;
+
+        @include mobileAndTablet() {
+            top: 210px;
+        }
     }
 
     &:hover {
+        cursor: pointer;
+
         .image {
             opacity: 0.8;
         }
@@ -40,13 +72,27 @@
         justify-content: space-between;
         font-size: 20px;
 
+        @include mobileAndTablet() {
+            height: 15%;
+            font-weight: bold;
+        }
+
         .name {
-            width: 93%;
+            width: 85%;
             margin-bottom: 15px;
+
+            @include mobileAndTablet() {
+                width: 75%;
+                margin-bottom: 5px;
+            }
         }
 
         .price {
             width: 15%;
+
+            @include mobileAndTablet() {
+                width: 25%;
+            }
         }
     }
 }
