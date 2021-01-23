@@ -1,3 +1,4 @@
+import ErrorBoundary from 'components/error-boundary/error-boundary.component';
 import Spinner from 'components/Spinner/spinner.component';
 import React, { lazy, Suspense, useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -19,17 +20,19 @@ const ShopPage = ({ match, fetchCollectionsStart }) => {
 
     return (
         <Switch>
-            <Suspense fallback={<Spinner />}>
-                <Route
-                    exact
-                    path={match.path}
-                    component={CollectionOverviewContainer}
-                />
-                <Route
-                    path={`${match.path}/:collectionId`}
-                    component={CollectionPageContainer}
-                />
-            </Suspense>
+            <ErrorBoundary>
+                <Suspense fallback={<Spinner />}>
+                    <Route
+                        exact
+                        path={match.path}
+                        component={CollectionOverviewContainer}
+                    />
+                    <Route
+                        path={`${match.path}/:collectionId`}
+                        component={CollectionPageContainer}
+                    />
+                </Suspense>
+            </ErrorBoundary>
         </Switch>
     );
 };
