@@ -72,7 +72,7 @@ function SignUp(props) {
                     required
                 />
                 <div className="buttons">
-                    <CustomButton type="submit">Log in</CustomButton>
+                    <CustomButton type="submit">Sign up</CustomButton>
                 </div>
             </form>
         </div>
